@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urgent News</title>
+</head>
+
+<body>
+    <h1>Urgent News</h1>
+    <div id="news"></div>
+    <script>
+        fetch('http://localhost:5000/getUrgentNews') // تم تعديل هنا لاستخدام localhost والمنفذ الصحيح
+            .then(response => response.json())
+            .then(data => {
+                const newsDiv = document.getElementById('news');
+                data.forEach(article => {
+                    const articleDiv = document.createElement('div');
+                    const title = document.createElement('h2');
+                    const content = document.createElement('p');
+                    title.textContent = article.title;
+                    content.textContent = article.content;
+                    articleDiv.appendChild(title);
+                    articleDiv.appendChild(content);
+                    newsDiv.appendChild(articleDiv);
+                });
+            });
+    </script>
+</body>
+
+</html>
